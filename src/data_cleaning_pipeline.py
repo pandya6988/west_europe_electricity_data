@@ -3,9 +3,9 @@ import pandas as pd
 import os
 from dataclasses import dataclass
 from ensure import ensure_annotations
-from logger import logger
+from .logger import logger
 from scipy.stats import zscore
-from data_cleaning_config import config
+from .data_cleaning_config import config
 
 @ensure_annotations
 def load_file_and_checks_feature_name(file_name:str, file):

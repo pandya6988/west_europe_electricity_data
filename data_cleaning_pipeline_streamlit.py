@@ -1,5 +1,5 @@
 import streamlit as st
-import data_cleaning_pipeline as dcp
+from src import data_cleaning_pipeline as dcp
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded')
 
