@@ -9,3 +9,5 @@ It performs following preprocessing tasks.
 3. Handle `NaN`values in the column. (according config file)
 4. Handle outliers. We are not removing the outliers but replacing the value 
 with previous non-outlier values.
+
+[click here](https://westeuropeelectricitydata-ufrq45d1ase.streamlit.app/) for streamlit app.
