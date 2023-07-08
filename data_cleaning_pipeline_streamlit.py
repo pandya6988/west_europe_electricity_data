@@ -36,7 +36,7 @@ if file:
         df = dcp.check_column_dtypes(df, config)
         df = dcp.handling_duplicates_nan(df, config)
         df = dcp.replace_outliers(df, config)
-
+        st.dataframe(df)
         csv = convert_df(df)
 
         st.download_button(
