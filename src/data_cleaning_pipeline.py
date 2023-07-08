@@ -8,7 +8,7 @@ from scipy.stats import zscore
 from .data_cleaning_config import config
 
 @ensure_annotations
-def load_file_and_checks_feature_name(file_name:str, file):
+def load_file_and_checks_feature_name(file_name:str, file, config=config):
     """
     Loads a .csv or .xls file, performs validity checks, and returns dataframe with required columns.
 
@@ -38,7 +38,7 @@ def load_file_and_checks_feature_name(file_name:str, file):
     return df[config.required_columns]
 
 @ensure_annotations
-def check_column_dtypes(df:pd.DataFrame):
+def check_column_dtypes(df:pd.DataFrame, config=config):
     """
     Checks and converts the datatypes of DataFrame columns to specified types.
 
@@ -78,7 +78,7 @@ def handle_nan(df:pd.DataFrame, col:str, method:str):
     return df
 
 @ensure_annotations
-def handling_duplicates_nan(df:pd.DataFrame):
+def handling_duplicates_nan(df:pd.DataFrame, config=config):
     """
     Removes duplicates and handles missing values in a DataFrame based on the specified configuration.
 
@@ -105,7 +105,7 @@ def handling_duplicates_nan(df:pd.DataFrame):
     return df
 
 @ensure_annotations
-def replace_outliers(df:pd.DataFrame):
+def replace_outliers(df:pd.DataFrame, config=config):
     """
     Replaces outliers in a DataFrame with the last valid (non-outlier) value.
 
