@@ -32,7 +32,7 @@ def load_file_and_checks_feature_name(file_name:str, file, config=config):
     logger.info("File loaded.")
 
     df = df.rename(columns=str.lower) # converting all column names to lower case.
-    assert df.columns.all() in config.required_columns, logger.info("All required columns does not exist in the file.")
+    assert set(df.columns).issubset(set(config.required_columns)), logger.info("All required columns does not exist in the file.")
     logger.info("All required columns exists in the file.")
 
     return df[config.required_columns]

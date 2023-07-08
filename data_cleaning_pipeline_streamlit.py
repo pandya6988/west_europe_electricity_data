@@ -15,22 +15,22 @@ def convert_df(df):
 
 file = st.file_uploader("Upload a file", type=["csv", "xlsx"])
 
+with st.sidebar:
+    required_columns = st.text_input("required columns (as a list)", str(config.required_columns))
+    config.required_columns = eval(required_columns)
+    columns_dtype = st.text_input("column dtype (as a list)", "['datetime64[ns]', float, float, float, object]")
+    config.columns_dtype = eval(columns_dtype)
+    nan_value_handler = st.text_input("How to handle nan values (as a dict)",
+                                      '{ "demand": "mean","supply": "mean","price" : "drop", "country" : "drop","date" : "drop"}')
+    config.nan_value_handler = eval(nan_value_handler)
+    outliers_zscore_threshold = st.text_input("outliers_zscore_threshold (as a dict)", '{ "price":4 }')
+    config.outliers_zscore_threshold = eval(outliers_zscore_threshold)
+
 if file:
     file_name = file.name
 
     df = dcp.load_file_and_checks_feature_name(file_name, file)
     st.dataframe(df)
-
-    with st.sidebar:
-        required_columns = st.text_input("required columns (as a list)", str(config.required_columns))
-        config.required_columns = eval(required_columns)
-        columns_dtype = st.text_input("column dtype (as a list)", "['datetime64[ns]', float, float, float, object]")
-        config.columns_dtype = eval(columns_dtype)
-        nan_value_handler = st.text_input("How to handle nan values (as a dict)",
-                                          '{ "demand": "mean","supply": "mean","price" : "drop", "country" : "drop","date" : "drop"}')
-        config.nan_value_handler = eval(nan_value_handler)
-        outliers_zscore_threshold = st.text_input("outliers_zscore_threshold (as a dict)", '{ "price":4 }')
-        config.outliers_zscore_threshold = eval(outliers_zscore_threshold)
 
     if st.button("preprocess the data"):
         df = dcp.check_column_dtypes(df, config)
